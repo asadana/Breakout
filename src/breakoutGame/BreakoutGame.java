@@ -9,7 +9,8 @@ import javax.swing.*;
 
 public class BreakoutGame {
 	
-	static int timeLeft = 70;
+	// Variable to store the time left on the countdown clock
+	static int timeLeft = 180;
 	
 	// Constructor for the BreakoutGame class
 	public BreakoutGame()
@@ -18,31 +19,41 @@ public class BreakoutGame {
 		JFrame clockFrame = new JFrame("Clock");
 		JFrame gameFrame = new JFrame("Breakout Game");
 		
-		JLabel clockLabel, livesLabel, scoreLabel; 
+		// Creating labels for both frames
+		JLabel clockLabel;		//, scoreLabel; 
+
+		// To-do add score to the game
 		
-		clockFrame.setBackground(Color.BLACK);
-		clockFrame.setSize(400, 200);
+		clockFrame.setSize(300, 200);
+		clockFrame.setResizable(false);
 		gameFrame.setBackground(Color.white);
 		gameFrame.setSize(600, 800);
+		gameFrame.setResizable(false);
 		
+		// Intializing all labels
 		clockLabel = new JLabel("0", JLabel.CENTER);
-		livesLabel = new JLabel("3");
-		scoreLabel = new JLabel("0");
-		
-		clockLabel.setBackground(Color.BLACK);
-		
-	    clockLabel.setMinimumSize(new Dimension(30,180));
-	    clockLabel.setPreferredSize(new Dimension(30,180));
-	    clockLabel.setMaximumSize(new Dimension(30,180));
+//		scoreLabel = new JLabel("SCORE: 0", JLabel.RIGHT);
+	
+		//Customizing the clock
+		clockLabel.setFont(new Font("Times New Roman", 1, 50));
+		clockLabel.setOpaque(true);
+		clockLabel.setBackground(Color.black);
+		clockLabel.setForeground(Color.red);
 	    
-	    clockFrame.add(clockLabel);
+		/*
+		scoreLabel.setFont(new Font("Times New Roman", 3, 14));
+		scoreLabel.setAlignmentY(gameFrame.getHeight()-20);
+		//scoreLabel.setBounds(gameFrame.getWidth()-20, gameFrame.getHeight()-10, 20, 10);
+		*/
 		
-	    //To-do Add Lives near the top and score at the bottom of gameFrame
-		gameFrame.add(livesLabel);
-		gameFrame.add(scoreLabel);
+	    clockFrame.add(clockLabel);	    
+//		gameFrame.add(scoreLabel);
 		
 		
-		
+		//Adjusting frame position on screen
+		gameFrame.setLocationRelativeTo(null);
+		// Setting location of clockFrame on the left side of gameFrame
+		clockFrame.setLocation(gameFrame.getX()-300, gameFrame.getY()*2);
 		clockFrame.setVisible(true);
 		gameFrame.setVisible(true);
 		
@@ -79,6 +90,8 @@ public class BreakoutGame {
 		    { 
 		    	
 		    	//ADD OPTION TO PAUSE THE GAME
+		    	
+		    	// Timer is paused when user gets a closing confirmation
 		    	timerVar.stop();
 		    	
 		        String options[] = {"Yes","No"};
